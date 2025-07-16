@@ -8,6 +8,10 @@ const Hero = () => {
 
     const totalVideos = 4;
     const nextVideoRef = useRef(null);
+
+    const handleVideoLoad = () =>{
+        setLoadedVideos((prev) => prev + 1);
+    }
     
     const handleMiniVdClick = () =>{
         setHasCicked(true);
@@ -33,7 +37,7 @@ const Hero = () => {
                     muted
                     id="current-video"
                     className="size-64 origin-center scale-150 object-cover object-center"
-                    onLoadedData={handleVideoLoaded}
+                    onLoadedData={handleVideoLoad}
                 />
             </div>
           </div>
