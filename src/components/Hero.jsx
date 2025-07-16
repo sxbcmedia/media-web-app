@@ -1,4 +1,22 @@
+import {useRef, useState} from "react";
+
 const Hero = () => {
+    const [currentIndex, setCurrentIndex] = useState(1);
+    const [hasCicked, setHasCicked] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
+    const [loadedVideos, setLoadedVideos] = useState(0);
+
+    const totalVideos = 4;
+    const nextVideoRef = useRef(null);
+    
+    const handleMiniVdClick = () =>{
+        setHasCicked(true);
+
+        setCurrentIndex((prevIndex) => prevIndex +1);
+    }
+
+    const getVideoSrc = (index) => `videos/hero-${index}.mp4`;
+
   return (
     <div className="relative h-dvh w-screen overflow-x-hidden">
       <div
@@ -7,7 +25,17 @@ const Hero = () => {
       >
         <div>
           <div className="mask-clip-path absolute-center absolute z-50 size-64 cursor-pointer overflow-hidden rounded-lg">
-            <div>MiniVideoPlayer</div>
+            <div onClick={handleMiniVdClick} className="origin-center">
+                <video
+                    ref={nextVideoRef}
+                    src={getVideoSrc(currentIndex + 1)}
+                    loop
+                    muted
+                    id="current-video"
+                    className="size-64 origin-center scale-150 object-cover object-center"
+                    onLoadedData={handleVideoLoaded}
+                />
+            </div>
           </div>
         </div>
       </div>
