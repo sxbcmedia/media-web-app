@@ -76,7 +76,11 @@ const Hero = () => {
     <div className="relative h-dvh w-screen overflow-x-hidden">
       {isLoading && (
         <div>
-          <div className="three-body"></div>
+          <div className="three-body">
+            <div className="three-body__dot" />
+            <div className="three-body__dot" />
+            <div className="three-body__dot" />
+          </div>
         </div>
       )}
       <div
