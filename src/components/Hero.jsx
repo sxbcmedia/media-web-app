@@ -25,53 +25,60 @@ const Hero = () => {
     setCurrentIndex(upcomingVideoIndex);
   };
 
-  useGSAP(()=>{
-    if(hasCicked){
-      gsap.set('#next-video', {visibility: 'visible'});
+  useGSAP(
+    () => {
+      if (hasCicked) {
+        gsap.set("#next-video", { visibility: "visible" });
 
-      gsap.to('#next-video', {
-        transformOrigin: 'center center',
-        scale: 1,
-        width: '100%',
-        height: '100%',
-        duration: 1,
-        ease: 'power1.inOut',
-        onStart: () => nextVideoRef.current.play(),
-      })
+        gsap.to("#next-video", {
+          transformOrigin: "center center",
+          scale: 1,
+          width: "100%",
+          height: "100%",
+          duration: 1,
+          ease: "power1.inOut",
+          onStart: () => nextVideoRef.current.play(),
+        });
 
-      gsap.from('#current-video', {
-        transformOrigin: 'center center',
-        scale: 0,
-        duration: 1.5,
-        ease: 'power1.inOut',
-
-      })
-    }
-  }, {dependencies:[currentIndex], revertOnUpdate: true})
-
-  useGSAP(()=>{
-    gsap.set('#video-frame', {
-      clipPath: 'polygon(14% 0%, 72% 0%, 90% 90%, 0% 100%)',
-      borderRadius: '0 0 40% 10%'
-    })
-
-    gsap.from('#video-frame', {
-      clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
-      borderRadius: '0 0 0 0',
-      ease: 'power1.inOut',
-      scrollTrigger:{
-        trigger: '#video-frame',
-        start: 'center center',
-        end: 'bottom center', 
-        scrub: true,
+        gsap.from("#current-video", {
+          transformOrigin: "center center",
+          scale: 0,
+          duration: 1.5,
+          ease: "power1.inOut",
+        });
       }
-    })
-  })
+    },
+    { dependencies: [currentIndex], revertOnUpdate: true }
+  );
+
+  useGSAP(() => {
+    gsap.set("#video-frame", {
+      clipPath: "polygon(14% 0%, 72% 0%, 90% 90%, 0% 100%)",
+      borderRadius: "0 0 40% 10%",
+    });
+
+    gsap.from("#video-frame", {
+      clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
+      borderRadius: "0 0 0 0",
+      ease: "power1.inOut",
+      scrollTrigger: {
+        trigger: "#video-frame",
+        start: "center center",
+        end: "bottom center",
+        scrub: true,
+      },
+    });
+  });
 
   const getVideoSrc = (index) => `videos/hero-${index}.mp4`;
 
   return (
     <div className="relative h-dvh w-screen overflow-x-hidden">
+      {isLoading && (
+        <div>
+          <div className="three-body"></div>
+        </div>
+      )}
       <div
         id="video-frame"
         className="relative z-10 h-dvh w-screen overflow-hidden rounded-lg bg-blue-75"
@@ -141,9 +148,9 @@ const Hero = () => {
         </div>
       </div>
 
-       <h1 className=" special-font hero-heading absolute bottom-5 right-5 text-black tracking-wide">
-          G<b>a</b>MING
-        </h1>
+      <h1 className=" special-font hero-heading absolute bottom-5 right-5 text-black tracking-wide">
+        G<b>a</b>MING
+      </h1>
     </div>
   );
 };
