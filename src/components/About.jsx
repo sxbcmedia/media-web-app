@@ -33,9 +33,7 @@ const About = () => {
         </h2>
 
         <AnimatedTitle
-          title="Disc<b>o</b>ver the <b>w</b>orld of <br />
-        <b>media</b> inside <br />
-        ST.X<b>A</b>VIER'S <b>B</b>OYS' <b>C</b>OLLEGE"
+          title="Disc<b>o</b>ver the <b>w</b>orld of <br/> <b>media</b> inside <br/> ST.X<b>A</b>VIER'S <b>B</b>OYS' <b>C</b>OLLEGE"
           containerClass="mt-5 !text-black text-center"
         />
 
